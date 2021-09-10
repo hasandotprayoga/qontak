@@ -12,32 +12,38 @@ class Qontak extends Singleton
         return $data->getResponse();
     }
 
-    public static function send()
+    public static function send($phone, $name, $params)
     {
         $data = (new Broadcast);
         $data->direct(
-            '6281319404409',
-            'Hasan',
+            self::cleanPhone($phone),
+            $name,
             '951a091a-fc1a-4170-acc6-e2496ea0fc7b',
-            [
-                [
-                    'key' => '1',
-                    'value' => 'full_name',
-                    'value_text' => 'Doni'
-                ],
-                [
-                    'key' => '3',
-                    'value' => 'total',
-                    'value_text' => 'Rp2700'
-                ],
-                [
-                    'key' => '5',
-                    'value' => 'link',
-                    'value_text' => 'https://asdf.com'
-                ]
-            ]
+            $params
         );
 
         return $data->getResponse();
+    }
+
+    protected static function cleanPhone($phone)
+    {
+
+        $phone = preg_replace('/[^0-9]/', '', $phone);
+
+        if (strlen($phone) > 0) {
+            $cleanChars = [
+                '+',
+                '0',
+                '62',
+            ];
+
+            foreach ($cleanChars as $value) {
+                $phone = ltrim($phone, $value);
+            }
+
+            $phone = '62' . $phone;
+        }
+
+        return $phone;
     }
 }
