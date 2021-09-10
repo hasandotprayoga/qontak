@@ -43,12 +43,12 @@ class Request
     public function __construct()
     {
 
-        $this->baseUrl = config('services.qontak.base_url', 'https://chat-service.qontak.com');
-        $this->username = config('services.qontak.username', 'admin@yukbisnis.com');
-        $this->password = config('services.qontak.password', 'yukbisnis123');
-        $this->clientId = config('services.qontak.client_id', 'RRrn6uIxalR_QaHFlcKOqbjHMG63elEdPTair9B9YdY');
-        $this->clientSecret = config('services.qontak.client_secret', 'Sa8IGIh_HpVK1ZLAF0iFf7jU760osaUNV659pBIZR00');
-        $this->channelId = config('services.qontak.channel_id', 'e6b8d027-9e89-4ada-b208-84f94a27711a');
+        $this->baseUrl = config('services.qontak.base_url');
+        $this->username = config('services.qontak.username');
+        $this->password = config('services.qontak.password');
+        $this->clientId = config('services.qontak.client_id');
+        $this->clientSecret = config('services.qontak.client_secret');
+        $this->channelId = config('services.qontak.channel_id');
     }
 
     public function hit()
