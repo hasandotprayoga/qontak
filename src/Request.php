@@ -101,11 +101,11 @@ class Request
         if ($response->getStatusCode() == 422) {
             $this->responseData = $responseBody;
 
-            $this->data = json_decode(json_encode($responseBody->response->metadata), true);
+            $this->data = json_decode(json_encode($responseBody->error->messages), true);
         }
 
-        if (isset($responseBody->response->messages) and !is_null($responseBody->response->messages)) {
-            $this->message = $responseBody->response->messages;
+        if (isset($responseBody->status) and !is_null($responseBody->status)) {
+            $this->message = $responseBody->status;
         } else {
             if ($response->getStatusCode() == 401) {
                 $this->message = 'Unauthorized';
