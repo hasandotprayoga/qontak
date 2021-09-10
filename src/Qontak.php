@@ -12,13 +12,13 @@ class Qontak extends Singleton
         return $data->getResponse();
     }
 
-    public static function send($phone, $name, $params)
+    public static function send($phone, $name, $templateId, $params)
     {
         $data = (new Broadcast);
         $data->direct(
             self::cleanPhone($phone),
             $name,
-            '951a091a-fc1a-4170-acc6-e2496ea0fc7b',
+            $templateId,
             $params
         );
 
